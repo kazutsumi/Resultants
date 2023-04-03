@@ -14,14 +14,22 @@
 \renewcommand{\thesection}{\arabic{section}}
 
 \DeclareMathOperator{\Syl}{Syl}
-\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\resul}{resul}
+\DeclareMathOperator{\Rat}{Rat}
 
 \pagestyle{fancy}
 
+\chead{終結式}
 
 \begin{document}
 
-\section{1変数多項式の終結式}
+\section*{1変数多項式の終結式}
+
+多項式の係数はいずれも整域 $R$ の元としておく．こうしておくと多項式の係
+数を商体 $\Rat(R)$ の元として分数に拡張できる．さらに方程式の解は代数閉
+包 $\overline{\Rat(R)}$ 上で考えられる．もしかしたら $R$ を UFD くらい
+に仮定しといた方が安全かもしれない．
+
 
 \begin{definition}[\textbf{終結式}]
   多項式 $\ds f(x) = \sum_{i=0}^{m}a_m x^i$ と $\ds g(x) = \sum_{j=0}^{n} b_n x^j \; (a_m, b_n \neq 0)$ に対し
@@ -41,7 +49,7 @@
   \]
   を $f$ と $g$ の\textbf{シルベスター行列}といい，その行列式
   \[
-    \Res(f,g):= \det(\Syl(f,g))
+    \resul(f,g):= \det(\Syl(f,g))
   \]
   を $f$ と $g$ の\textbf{終結式 (resultant)}という．なお，零でない定数 $g(x) = b_0 \neq 0$ に対しては
   \[
@@ -51,15 +59,38 @@
             & \ddots & \\
             & & b_0 
     \end{array}
-  \right], \quad \Res(f, b_0) = b_0^m
+  \right], \quad \resul(f, b_0) = b_0^m
   \]
-  と定め，零多項式に対しては $\Res(f,0) = \Res(0,g)=0$ と定める．
+  と定める．同様に，$\resul(a_0, g) = a_m^n$ とする．さらに，零多項式に対して
+  は $\resul(f,0) = \resul(0,g)=0$ と定める．
 \end{definition}
 
+\begin{example}
+  $f(x) = x^3+1, \; g(x)=x^2+2x+1, \; h(x) = x^2+1$ とする．
+  \[
+    \resul(f,g) = \left| 
+      \begin{array}{ccccc}
+        1 & 0 & 0 & 1 & 0\\
+        0 & 1 & 0 & 0 & 1\\
+        1 & 2 & 1 & 0 & 0\\
+        0 & 1 & 2 & 1 & 0\\
+        0 & 0 & 1 & 2 & 1
+      \end{array}
+    \right|=2, \quad \resul(f,h) = \left|
+      \begin{array}{ccccc}
+        1 & 0 & 0 & 1 & 0\\
+        0 & 1 & 0 & 0 & 1\\
+        1 & 0 & 1 & 0 & 0\\
+        0 & 1 & 0 & 1 & 0\\
+        0 & 0 & 1 & 0 & 1
+      \end{array}
+    \right|=0
+  \]
+\end{example}
 
 
 \newpage
 
-\section{2変数多項式の終結式}
+\section*{2変数多項式の終結式}
 
 \end{document}
