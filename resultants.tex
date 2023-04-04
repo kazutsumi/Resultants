@@ -17,13 +17,12 @@
 \DeclareMathOperator{\resul}{resul}
 \DeclareMathOperator{\Rat}{Rat}
 
-\pagestyle{fancy}
+\pagestyle{plain}
 
-\chead{終結式}
 
 \begin{document}
 
-\section*{1変数多項式の終結式}
+\section{1変数多項式の終結式}
 
 多項式の係数はいずれも整域 $R$ の元としておく．こうしておくと多項式の係
 数を商体 $\Rat(R)$ の元として分数に拡張できる．さらに方程式の解は代数閉
@@ -65,6 +64,10 @@
   は $\resul(f,0) = \resul(0,g)=0$ と定める．
 \end{definition}
 
+\begin{remark}
+  上で定義した $\Syl(f,g)$ の転置行列をシルベスター行列と呼ぶ流儀もある．
+\end{remark}
+
 \begin{example}
   $f(x) = x^3+1, \; g(x)=x^2+2x+1, \; h(x) = x^2+1$ とする．
   \[
@@ -88,9 +91,75 @@
   \]
 \end{example}
 
+終結式に関するいくつかの性質を紹介する．主に線形代数との関わりを紹介し
+たいので，主張や証明が重複することが多々ある．以下，$f,g$ は次
+のような多項式とする．
+\[
+  f(x)=\sum_{i=0}^{m} a_i x^i, \; g(x)=\sum_{j=0}^{n} b_j x^j
+  , \quad a_m, b_n \neq 0
+\]
+
+\begin{theorem}
+  $\resul(f,g) = 0$ ならば，$f$ と $g$ は共通根を持つ．
+\end{theorem}
+
+\begin{proof}
+  $f(\alpha)=g(\alpha)=0$ とする．
+  \[
+    \begin{aligned}
+      \alpha^i f(\alpha) &= a_m \alpha^{m+i} + a_{m-1}\alpha^{m-1+i} +
+      \cdots + a_0 \alpha^i =0 \quad (i=0,1, \ldots, n-1),\\
+      \alpha^j g(\alpha) &= b_n \alpha^{n+j} + b_{n-1}\alpha^{n-1+j} +
+      \cdots + b_0 \alpha^j=0 \quad (j=0, 1, \ldots, m-1)
+    \end{aligned}
+  \]
+  が成り立つ．これは行列を使って以下のように書ける．
+  \[
+    \Syl(f,g) \left[
+      \begin{array}{c}
+        \alpha^{m+n-1}\\
+        \alpha^{m+m-2}\\
+        \vdots\\
+        \alpha\\
+        1
+      \end{array}
+    \right] = \bm{0}_{m+n}
+  \]
+  同次形連立1次方程式 $\Syl(f,g) \bm{x} = \bm{0}$ が
+  非自明解を持つので $\resul(f,g)=0$ である．
+\end{proof}
+
+\begin{theorem}
+  定数でない多項式 $f,g$ に関して以下は同値である．
+  \begin{enumerate}[(1)]
+  \item $\resul(f,g) = 0$.
+  \item $f, g$ は定数でない共通因子を持つ．%（$\Leftrightarrow f, g$ は共通根を持つ． ）
+  \item 以下を満たす多項式 $A, B$ （少なくとも一方は非零多項式）が存在する．
+    \[
+      Af + Bg = 0, \quad \deg A <n, \; \deg B <m
+    \]
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  
+\end{proof}
 
 \newpage
 
-\section*{2変数多項式の終結式}
+\section{2変数多項式の終結式}
+
+
+\begin{thebibliography}{99}
+\bibitem{NI} 長坂工作・岩根秀直（編），『計算機代数の基礎理論』，共立出版 (2020).
+
+\bibitem{miyake} 三宅敏恒，『線形代数概論』，培風館 (2023).
+
+\bibitem{yokoyama} 横山和弘，『多項式と計算機代数』，朝倉書店 (2022).
+
+\bibitem{CLO} D. A. Cox, J. Little and D. O'Shea, \textit{Ideals Varieties, and Algorithms 4th edition}, Springer (2015).
+
+\bibitem{Lang} S. Lang, \textit{Algebra Revised 3rd edition}, Springer (2004). 
+\end{thebibliography}
 
 \end{document}
