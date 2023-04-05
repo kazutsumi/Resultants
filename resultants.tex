@@ -1,12 +1,13 @@
 \documentclass[12pt, uplatex, dvipdfmx]{jsarticle} 
 \usepackage{amsmath,amsthm,amssymb,amsfonts,fancyhdr, enumerate, braket, setspace, graphicx, bm, multirow, bigdelim}
-
+\usepackage{emathEy}
 \newcommand{\ds}{\displaystyle}
 
 \theoremstyle{definition}
 \newtheorem{theorem}{定理}
 \newtheorem*{theorem*}{定理}
 \newtheorem*{definition}{定義}
+\newtheorem{lemma}{補題}
 \newtheorem{example}{例}
 \newtheorem*{remark}{注意}
 \newtheorem*{promis}{約束}
@@ -16,6 +17,7 @@
 \DeclareMathOperator{\Syl}{Syl}
 \DeclareMathOperator{\resul}{resul}
 \DeclareMathOperator{\Rat}{Rat}
+\DeclareMathOperator{\disc}{disc}
 
 \pagestyle{plain}
 
@@ -60,15 +62,14 @@
     \end{array}
   \right], \quad \resul(f, b_0) = b_0^m
   \]
-  と定める．同様に，$\resul(a_0, g) = a_m^n$ とする．さらに，零多項式に対して
-  は $\resul(f,0) = \resul(0,g)=0$ と定める．
+  であり，同様に $\resul(a_0, g) = a_m^n$ である．また，$\resul(f,0) = \resul(0,g)=0$ と定める．
 \end{definition}
 
 \begin{remark}
   上で定義した $\Syl(f,g)$ の転置行列をシルベスター行列と呼ぶ流儀もある．
 \end{remark}
 
-\begin{example}
+\begin{example}\label{exmp:fgh}
   $f(x) = x^3+1, \; g(x)=x^2+2x+1, \; h(x) = x^2+1$ とする．
   \[
     \resul(f,g) = \left| 
@@ -79,7 +80,7 @@
         0 & 1 & 2 & 1 & 0\\
         0 & 0 & 1 & 2 & 1
       \end{array}
-    \right|=2, \quad \resul(f,h) = \left|
+    \right|=0, \quad \resul(f,h) = \left|
       \begin{array}{ccccc}
         1 & 0 & 0 & 1 & 0\\
         0 & 1 & 0 & 0 & 1\\
@@ -87,63 +88,392 @@
         0 & 1 & 0 & 1 & 0\\
         0 & 0 & 1 & 0 & 1
       \end{array}
-    \right|=0
+    \right|=2
   \]
+  次の定理\ref{thm:common-solution}から，$f,g$ は共通根を持ち，$f,h$ は共通根を持たないことがわかる．
 \end{example}
 
-終結式に関するいくつかの性質を紹介する．主に線形代数との関わりを紹介し
-たいので，主張や証明が重複することが多々ある．以下，$f,g$ は次
-のような多項式とする．
+以下，$f,g$ は次のような多項式とする．ただし，$a_m, b_n \neq 0$ とする．
 \[
-  f(x)=\sum_{i=0}^{m} a_i x^i, \; g(x)=\sum_{j=0}^{n} b_j x^j
-  , \quad a_m, b_n \neq 0
+  f(x)=\sum_{i=0}^{m} a_i x^i = a_m\prod_{i=1}^{m}(x-\alpha_i), \quad
+  g(x)=\sum_{j=0}^{n} b_j x^j=b_n\prod_{j=1}^{n}(x-\beta_j)
 \]
 
-\begin{theorem}
-  $\resul(f,g) = 0$ ならば，$f$ と $g$ は共通根を持つ．
+\begin{theorem}\label{thm:common-solution}
+$f$ と $g$ は共通根を持つ．$\Longleftrightarrow$ \;$\resul(f,g)=0$.
 \end{theorem}
 
 \begin{proof}
-  $f(\alpha)=g(\alpha)=0$ とする．
+  $(\Rightarrow)$ $f(\gamma)=g(\gamma)=0$
+  とすると，$\gamma^i f(\gamma) = \gamma^j g(\gamma)=0$ なので以下が成
+  り立つ．
   \[
-    \begin{aligned}
-      \alpha^i f(\alpha) &= a_m \alpha^{m+i} + a_{m-1}\alpha^{m-1+i} +
-      \cdots + a_0 \alpha^i =0 \quad (i=0,1, \ldots, n-1),\\
-      \alpha^j g(\alpha) &= b_n \alpha^{n+j} + b_{n-1}\alpha^{n-1+j} +
-      \cdots + b_0 \alpha^j=0 \quad (j=0, 1, \ldots, m-1)
-    \end{aligned}
-  \]
-  が成り立つ．これは行列を使って以下のように書ける．
-  \[
-    \Syl(f,g) \left[
+    \left[
+      \begin{array}{ccccc}
+        a_3 & a_{2} & a_1 & a_0 & 0\\
+        0 & a_3 & a_2 & a_1 & a_0\\
+        b_2 & b_1 & b_0 & 0 & 0\\
+        0 & b_2 & b_1 & b_0 & 0\\
+        0 & 0 & b_2 & b_1 & b_0
+      \end{array}
+    \right]\left[
       \begin{array}{c}
-        \alpha^{m+n-1}\\
-        \alpha^{m+m-2}\\
-        \vdots\\
-        \alpha\\
+        \gamma^4\\
+        \gamma^3\\
+        \gamma^2\\
+        \gamma\\
         1
       \end{array}
-    \right] = \bm{0}_{m+n}
+    \right] = \left[
+      \begin{array}{c}
+        0\\
+        0\\
+        0\\
+        0\\
+        0
+      \end{array}
+    \right] \quad (m=3, n=2 \text{ の場合})
   \]
   同次形連立1次方程式 $\Syl(f,g) \bm{x} = \bm{0}$ が
   非自明解を持つので $\resul(f,g)=0$ である．
+
+  $(\Leftarrow)$ 以下の補題\ref{lem:explicit-resul}より従う．
 \end{proof}
 
+\begin{lemma}\label{lem:explicit-resul}
+  $\ds \resul(f,g) =  a_m^n b_n^m \prod_{i=1}^{m} \prod_{j=1}^{n} (\alpha_i-\beta_j)$
+\end{lemma}
+
+\begin{proof}
+  定理\ref{thm:common-solution}の $(\Rightarrow)$ から $\alpha_i=\beta_j$ のと
+  き $\resul(f,g)=0$ なので，因数定理より $T:=\prod \prod (\alpha_i-\beta_j)$ は $\resul(f,g)$ を割り切
+  る．そこで，各 $\alpha_i, \beta_j$ の多項式とし
+  て $\resul(f,g)$ と $T$ の次数を評価し，係数を比較すればよい．
+  \[
+    \begin{aligned}
+      f(x)/a_m &= x^m + A_{1} x^{m-1} + \cdots + A_m = \prod_{i=1}^{m}(x-\alpha_i),\\
+      g(x)/b_n &= x^n + B_{1} x^{n-1} + \cdots + B_n = \prod_{j=1}^{n}(x-\beta_j)
+    \end{aligned}
+  \]
+  とすると，$m=3, n=2$ の場合
+  \[
+    \resul(f,g) = a_3^2\ b_2^3\ \left|
+      \begin{array}{ccccc}
+        1 & A_1 & A_2  & A_3 & 0\\
+        0 & 1 & A_1 & A_2 & A_3\\
+        1 & B_1 & B_2 & 0 & 0 \\
+        0 & 1 & B_1 & B_2 & 0\\
+        0 & 0 & 1 & B_1 & B_2
+      \end{array}
+    \right|
+  \]
+  である．各 $A_k$ は $\alpha_1, \ldots, \alpha_m$ の，
+  各 $B_k$ は $\beta_1, \ldots, \beta_n$ の $k$ 次基本対称式の $\pm 1$
+  倍である．また，各 $A_i, B_j$ はそれぞれ $\alpha_i, \beta_j$ の1次式
+  なので，$\resul(f,g)$ は $\alpha_i$ に関して高々 $n$ 次で，$\beta_j$
+  に関して高々 $m$ 次である．従って，$\resul(f,g)$ は $T$ の定数倍であ
+  り，$\alpha_1^n$ の係数を比較して，$\resul(f,g) = a_m^n b_n^m T$ がわ
+  かる．
+\end{proof}
+
+\begin{example}\label{exmp:disc2}
+  $f(x) = ax^2+bx+c \; (a \neq 0)$ とする．$f'(x) = 2ax + b$ であり，
+  \[
+    \resul(f, f') = \left|
+      \begin{array}{ccc}
+        a & b & c\\
+        2a & b & 0\\
+        0 & 2a & b
+      \end{array}
+    \right| =-a (b^2-4ac)
+  \]
+  より，$b^2-4ac=0$ のとき $f, f'$ は共通根を持つ．また，このとき $f$ は重根を持つ．
+\end{example}
+
+\begin{theorem}\label{thm:double-resul}
+  非定数多項式 $f$ に対して，以下は同値．
+  \begin{edaenumerate}<retusuu=3>[(1)]
+  \item $f$ は重根を持つ．
+  \item $f, f'$ は共通根を持つ．
+  \item $\resul(f, f')=0$.
+  \end{edaenumerate}
+\end{theorem}
+
+% \begin{proof}
+%   $(1) \Leftarrow (2)$ $\alpha$ を $f$ の重根とすると，$f(x) = (x-\alpha)^2q(x)$ と書ける．このとき
+%   \[
+%     f'(x) = 2(x-\alpha)q(x) + (x-\alpha)^2 q'(x) = (x-\alpha)\left( 2q(x) + (x-\alpha)q'(x)\right)
+%   \]
+%   より，$f, f'$ は共通根 $\alpha$ を持つ．
+
+%   $(2) \Rightarrow (1)$ $\alpha$ を $f(\alpha)=f'(\alpha)=0$ とす
+%   る．$f(x)=(x-\alpha)p(x)$ と書ける．
+%   \[
+%     f'(x) = p(x) + (x-\alpha)p'(x)
+%   \]
+%   より $f'(\alpha) = p(\alpha) =0$ から $p(x) =(x-\alpha)q(x)$ と書けるので， $\alpha$ は $f$ の重根である．
+
+%   $(2) \Leftrightarrow (3)$ 定理\ref{thm:common-solution}より従う．
+% \end{proof}
+
+\begin{theorem}\label{thm:resul-disc}
+  \[
+    \resul(f,f') = (-1)^{m(m-1)/2}\ a_m^{2m-1} \prod_{1 \leq i < j \leq m} (\alpha_i - \alpha_j)^2
+  \]
+\end{theorem}
+
+\begin{proof}
+  補題\ref{lem:explicit-resul}より，一般に
+  \[
+    \resul(f,g) = a_m^n \ b_n^m\ \prod_{i=1}^{m} \prod_{j=1}^{n} (\alpha_i-\beta_j)
+    =a_m^n \ \prod_{i=1}^{m} \left( b_n \prod_{j=1}^{n}(\alpha_i-\beta_j)\right) = a_m^n\ \prod_{i=1}^{m} g(\alpha_i)
+  \]
+  が成り立つ．これを $g=f'$ として適用して
+  \[
+    \resul(f, f') = a_m^{m-1} \ \prod_{i=1}^{m} f'(\alpha_i)
+  \]
+  を得る．$\ds f'(x) = a_m\ \sum_{i=1}^{m} \prod_{\substack{j=1 \\ j \neq
+      i}}^{m} (x-\alpha_j)$ より
+  $\ds f'(\alpha_i) = a_m \prod_{\substack{j=1 \\ j \neq i}}
+  (\alpha_i-\alpha_j)$ から従う．
+\end{proof}
+
+\begin{definition}[\textbf{判別式}] $2$ 次以上の多項式 $f$ に対して以下の $\disc(f)$ を $f$ の\textbf{判別式}という．
+  \[
+    \disc(f) = a_m^{2m-2} \prod_{1 \leq i < j \leq m} (\alpha_i-\alpha_j)^2 = \frac{(-1)^{m(m-1)/2}}{a_m} \resul(f,f')
+  \]
+  定理\ref{thm:double-resul}, \ref{thm:resul-disc}より，$f$ が重根を持つことと $\disc(f)=0$ は同値である．
+\end{definition}
+
+\begin{example}
+  $f(x) = x^3+px+q$ とする．$f'(x) = 3x^2+p$ より， $\disc(f)$ は以下の通り．
+  \[
+    \disc(f) = (-1)^3 \resul(f,f') = -\left|
+      \begin{array}{ccccc}
+        1 & 0 & p & q & 0\\
+        0 & 1 & 0 & p & q\\
+        3 & 0 & p & 0 & 0\\
+        0 & 3 & 0 & p & 0\\
+        0 & 0 & 3 & 0 & p
+      \end{array}
+    \right| = -(4p^3+27q^2)
+  \]
+\end{example}
+
+\newpage
+
 \begin{theorem}
+  $f$ を実係数 $3$ 次多項式とする．
+  \[
+    \disc (f) =
+    \begin{cases}
+      >0 & (\text{ $f$ は相異なる3個の実根を持つ})\\
+      =0 & (\text{ $f$ は重根を持ち，どの根も実数})\\
+      <0 & (\text{ $f$ は1個の実根と2個の互いに共役な虚根を持つ})
+    \end{cases}
+  \]
+\end{theorem}
+
+\begin{proof}
+  $f$ の根 $\alpha_1, \alpha_2, \alpha_3$ が互いに相異なる実数のとき，
+  定義から$\disc(f) >0$ である．$f$ が重根を持つとき，$\disc(f)=0$ であ
+  る．$\alpha_1$ が実数で $\alpha_2, \alpha_3$ が互いに共役な虚数のとき，
+  \[
+    \begin{aligned}
+      \disc(f) &= a_m^{2m-2} (\alpha_1-\alpha_2)^2(\alpha_1-\alpha_3)^2(\alpha_2-\alpha_3)^2\\
+      &=a_m^{2m-2}\left( \left( \alpha_1 - \alpha_2\right)\left(\overline{\alpha_1-\alpha_2}\right)\right)^2
+      \left( 2 i \left(\Im \alpha_2\right)\right)^2
+      = -4 a_m^{2m-2} \left| \alpha_1-\alpha_2\right|^2 \left( \Im \alpha_2\right)^2 <0
+    \end{aligned}
+  \]
+  である．$f$ は実係数なので実根は1個以上あり，虚根は偶数個で重根ではない．
+\end{proof}
+
+
+\begin{example}[接点 $t$ 問題] 点 $(a,b)$ から曲線 $y=x^3-3x$ に引ける
+  接線の本数が $3$ 本になるときの $a,b$ の条件を求めよう．\\
+
+  点 $(a,b)$ を通る直線 $y=m(x-a)+b$ と曲線 $y=x^3-3x$ が接するための必
+  要十分条件は，$3$ 次多項式 $f(x) = x^3-3x - \left( m(x-a)+b\right)$
+  が重根を持つこと，つまり
+  \[
+    \resul(f, f') = -4 m^{3}+9 \left(3 a^{2}-4\right) m^{2}-54 \left(a
+      b +2\right) m +27 \left(b -2\right) \left(b +2\right)=0
+  \]
+  が成り立つことである．そして，このような接線が $3$ 本存在することは，
+  上の $m$ に関する $3$ 次方程式が異なる $3$ 実解を持つことと同値であ
+  る．つまり，
+  \[
+    g(m) = -4 m^{3}+9 \left(3 a^{2}-4\right) m^{2}-54 \left(a
+      b +2\right) m +27 \left(b -2\right) \left(b +2\right)
+  \]
+  とおいて，$\disc(g)>0$ となる条件を求めればよい．
+  \[
+    \disc(g) = \frac{-1}{-4}\resul(g,g') = 314928 (a^3-3a-b)(3a+b)^3
+  \]
+  より，$(a^3-3a-b)(3a+b)>0$ が求める条件である．
+\end{example}
+
+\newpage
+
+\begin{theorem}\label{thm:common-factor}
   定数でない多項式 $f,g$ に関して以下は同値である．
   \begin{enumerate}[(1)]
-  \item $\resul(f,g) = 0$.
   \item $f, g$ は定数でない共通因子を持つ．%（$\Leftrightarrow f, g$ は共通根を持つ． ）
-  \item 以下を満たす多項式 $A, B$ （少なくとも一方は非零多項式）が存在する．
+  \item 以下を満たす多項式 $U, V$ （少なくとも一方は非零多項式）が存在する．
     \[
-      Af + Bg = 0, \quad \deg A <n, \; \deg B <m
+      Uf + Vg = 0, \quad \deg U <n, \; \deg V <m
     \]
+  \item $\resul(f,g) = 0$.
   \end{enumerate}
 \end{theorem}
 
 \begin{proof}
-  
+  $(1) \Rightarrow (2)$ $h$ を $f,g$ の共通因子とし，$f=hf_1, \,
+  g=hg_1$ とする．
+  \[
+    g_1 \cdot f + (-f_1) \cdot g = g_1  hf_1 - f_1 hg = 0
+  \]
+  より，$U=g_1, V=-f_1$ とすればよい．
+
+  $(2) \Rightarrow (1)$
+  $Uf+Vg=0, \; \deg U<n, \, \deg V<m, \; V \neq 0$ とする．$f,g$ が共通
+  因子を持たないとすると，$\tilde{U}f+\tilde{V}g=1$ を満たす多項
+  式 $\tilde{U}, \tilde{V}$ が存在する．$Vg = -Uf$ なので
+  \[
+    V = V(\tilde{U}f+\tilde{V}g) = \tilde{U}Vf + \tilde{V}Vg = \tilde{U}Vf + \tilde{V}(-Uf) = (\tilde{U}V - \tilde{V}U)f
+  \]
+  である．$V \neq 0$ なので $\deg V \geq \deg f = n$ より，$\deg V <n$ に矛盾する．
+
+  $(2) \Leftrightarrow (3)$ 簡単のため，$m=3, n=2$
+  とする．一般の場合も同様である．
+  \[
+    U= \sum_{i=0}^{n-1} u_i x^i=u_1 x + u_0, \quad V= \sum_{j=0}^{m-1} v_j x^j=v_2 x^2+v_1 x + v_0
+  \]
+  とおき，$\bm{w} = \left[
+    \begin{array}{ccccc}
+      u_1 & u_0 & v_2 & v_1 & v_0
+    \end{array}
+    \right]^{\top}$ とすると
+  \[
+    \begin{aligned}
+      Uf+Vg=0 &\Leftrightarrow
+      \begin{cases}
+        a_3u_1 + b_2v_2=0\\
+        a_2u_1+a_3u_0+b_1v_2+b_2v_1=0\\
+        a_1u_1+a_2u_0+b_0v_2+v_1v_1+b_2v_0=0\\
+        a_0u_1+a_1u_0+b_0v_1+b_1v_0=0\\
+        a_0u_0+b_0v_0=0
+      \end{cases}\\
+      & \Leftrightarrow \left[
+        \begin{array}{ccccc}
+          a_3 & 0 & b_2 & 0 & 0\\
+          a_2 & a_3 & b_1 & b_2 & 0\\
+          a_1 & a_2 & b_0 & b_1 & b_2\\
+          a_0 & a_1 & 0 & b_0 & b_1\\
+          0 & a_0 & 0 & 0 & b_0
+        \end{array}
+      \right] \left[
+        \begin{array}{c}
+          u_1\\
+          u_0\\
+          v_2\\
+          v_1\\
+          v_0
+        \end{array}
+      \right] = \bm{0}_5
+      \Leftrightarrow \Syl(f,g)^{\top} ~\bm{w}= \bm{0}_5
+    \end{aligned}
+  \]
+  なので，$\resul(f,g) = \det\left(\Syl(f,g)^{\top}\right)$ と合わせて
+  \[
+    (2) \Leftrightarrow \text{同次形連立1次方程式 } \Syl(f,g)^{\top}~\bm{x}=\bm{0} \text{ が非自明解を持つ} \Leftrightarrow (3)
+  \]
+  を得る．
 \end{proof}
+
+定理\ref{thm:common-factor}から定理\ref{thm:common-solution}とその逆が証明できる．
+
+\begin{theorem}\label{thm:solution-resul}
+$f,g$ は共通根を持つ．$\Leftrightarrow$ \ $\resul(f,g) =0$. 
+\end{theorem}
+
+\begin{proof} $f,g$ の一方が零多項式なら他方の根は零多項式の根であ
+  り，$\resul(f,g)=0$ である．$f,g$ が共に零多項式ではなく一方が定数な
+  ら共通根は存在せず，$\resul(f,g) \neq 0$ である．そこで，$f,g$ は共に
+  定数でないとする．
+
+  $(\Rightarrow)$ $f(\gamma)=g(\gamma)=0$ とすると，因数定理から $f,g$
+  は共に $x-\gamma$ で割り切れる．つまり，$f,g$ の共通因子 $x-\gamma$
+  が存在するので，定理\ref{thm:common-factor}より $\resul(f,g)=0$ であ
+  る．
+  
+  $(\Leftarrow)$ 定理\ref{thm:common-factor}から $f,g$ は非定数の共通因子 $h$
+  を持ち，$h$ の根は $f,g$ の共通根である．
+\end{proof}
+
+次の定理\ref{thm:solutions}は，終結式 $\resul(f,g)$ の値と $f,g$ の根の間の明示的な関
+係式を与え，その系として定理\ref{thm:common-solution}の逆を導くこともできる．
+
+\newpage
+
+以下，$\ds f(x) = \prod_{i=1}^{m}(x-\alpha_i), \; g(x) = \prod_{j=1}^{n}(x-\beta_j)$ とおく．
+
+\begin{theorem}\label{thm:solutions}
+  $\ds \resul(f,g) =  a_m^n b_n^m \prod_{i=1}^{m} \prod_{j=1}^{n} (\alpha_i-\beta_j)$
+\end{theorem}
+
+\begin{proof}
+  $\ds T:=\prod_{i=1}^{m}\prod_{j=1}^{n}(\alpha_i-\beta_j)$ とおく． 定
+  理\ref{thm:common-solution}から $\alpha_i=\beta_j$ のと
+  き $\resul(f,g)=0$ なので，因数定理より $T$ は $\resul(f,g)$ を割り切
+  る．そこで，各 $\alpha_i, \beta_j$ の多項式とし
+  て $\resul(f,g)$ と $T$ の次数を評価し，係数を比較すればよい．
+  \[
+    \begin{aligned}
+      \frac{f(x)}{a_m} &= x^m + A_{1} x^{m-1} + \cdots + A_m = \prod_{i=1}^{m}(x-\alpha_i),\\
+      \frac{g(x)}{b_n} &= x^n + B_{1} x^{n-1} + \cdots + B_n = \prod_{j=1}^{n}(x-\beta_j)
+    \end{aligned}
+  \]
+  とすると，
+  \[
+    \resul(f,g) = a_m^n b_n^m \left|
+      \begin{array}{ccccccc}
+        1 & A_{1} & \cdots  & A_m& & & \\
+          & 1 & A_{1} & \cdots  & A_m& & \\
+          & & \ddots & \ddots & & \ddots &  \\
+          & & & 1 & A_{1} & \cdots &  A_m\\
+        1 & B_{1} & \cdots & B_n & & &\\
+          & 1 & B_{1} & \cdots & B_n & &\\
+          & & \ddots & \ddots & & \ddots &\\
+          & & & 1 & B_{1} & \cdots & B_n
+      \end{array}
+    \right|
+  \]
+  である．各 $A_k$ は $\alpha_1, \ldots, \alpha_m$ の，
+  各 $B_k$ は $\beta_1, \ldots, \beta_n$ の $k$ 次基本対称式の $\pm 1$
+  倍である．また，各 $A_i, B_j$ はそれぞれ $\alpha_i, \beta_j$ の1次式
+  なので，$\resul(f,g)$ は $\alpha_i$ に関して高々 $n$ 次で，$\beta_j$
+  に関して高々 $m$ 次である．従って，$\resul(f,g)$ は $T$ の定数倍であ
+  り，$\alpha_1^n$ の係数を比較して，$\resul(f,g) = a_m^n b_n^m T$ がわ
+  かる．
+\end{proof}
+
+次に，定理\ref{thm:solutions}を書き換えて，多項式の判別式と終結式の関係を導く．
+\[
+  a_m \prod_{i=1}^{m}(\alpha_i-\beta_j)= (-1)^m a_m \prod_{i=1}^{m}(\beta_j-\alpha_i)= (-1)^m f(\beta_j), \quad
+  b_n \prod_{j=1}^{n}(\alpha_i-\beta_j) = g(\alpha_i)
+\]
+より，次が成り立つ．
+
+
+\begin{lemma}\label{lem:resul-trans}
+  $\ds \resul(f,g) = (-1)^{mn}b_n^m \prod_{j=1}^{n}f(\beta_j) = a_m^n \prod_{i=1}^{m}g(\alpha_i)$
+\end{lemma}
+
+
+
+
 
 \newpage
 
@@ -157,7 +487,7 @@
 
 \bibitem{yokoyama} 横山和弘，『多項式と計算機代数』，朝倉書店 (2022).
 
-\bibitem{CLO} D. A. Cox, J. Little and D. O'Shea, \textit{Ideals Varieties, and Algorithms 4th edition}, Springer (2015).
+\bibitem{CLO} D. U. Cox, J. Little and D. O'Shea, \textit{Ideals Varieties, and Ulgorithms 4th edition}, Springer (2015).
 
 \bibitem{Lang} S. Lang, \textit{Algebra Revised 3rd edition}, Springer (2004). 
 \end{thebibliography}
