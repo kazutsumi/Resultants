@@ -62,7 +62,9 @@
     \end{array}
   \right], \quad \resul(f, b_0) = b_0^m
   \]
-  であり，同様に $\resul(a_0, g) = a_m^n$ である．また，$\resul(f,0) = \resul(0,g)=0$ と定める．
+  であり，同様に $\resul(a_0, g) = a_m^n$ である．また，共に定数の場合
+  は $\resul(a_0, b_0)=1$ とし，一方が零多項式の場合は $\resul(f,0) =
+  \resul(0,g)=0$ と定める．
 \end{definition}
 
 \begin{remark}
@@ -393,12 +395,82 @@ $f$ と $g$ は共通根を持つ．$\Longleftrightarrow$ \;$\resul(f,g)=0$.
 \end{proof}
 
 
+\begin{theorem}\label{thm:gcdlike}
+  非零多項式 $f,g \in R[x]$ に対して次を満たす $U,V \in \Rat(R)[x]$ が存在する．
+  \[
+    Uf + V g = \resul(f,g)
+  \]
+  特に，$f,g$ の一方が非定数なら，$U, V \in R[x]$ である．
+\end{theorem}
+
+\begin{proof}
+  $\resul(f,g)=0$ なら $U=V=0$ とし，$f,g$ の一方が定数，例え
+  ば $f=a_0$ なら
+  \[
+    \resul(a_0, g) = a_0^n = a_0^{n-1}\cdot  f + 0\cdot g
+  \]
+  とすればよいので，$f,g$ 共に定数でないとし，$\resul(f,g) \neq 0$ とする．まず，
+  \[
+    \tilde{U} f + \tilde{V}g = 1
+  \]
+  を満たす多項式 $\tilde{U}, \tilde{V}$
+  を構成する．$\ds \tilde{U}=\sum_{i=0}^{n-1} u_i x^i, \;
+  \tilde{V}=\sum_{j=0}^{m-1}v_j x^j$ とおくと，
+  \[
+    \tilde{U}f+\tilde{V}g=1 \Leftrightarrow \left[
+      \begin{array}{ccccc}
+        a_3 & 0 & b_2 & 0 & 0\\
+        a_2 & a_3 & b_a & b_2 & 0\\
+        a_1 & a_2 & b_0 & b_1 & b_2\\
+        a_0 & a_1 & 0 & b_0 & b_1\\
+        0 & a_0 & 0 & 0 & b_0
+      \end{array}
+    \right] \left[
+      \begin{array}{c}
+        u_1\\
+        u_0\\
+        v_2\\
+        v_1\\
+        v_0
+      \end{array}
+    \right] = \left[
+      \begin{array}{c}
+        0\\
+        0\\
+        0\\
+        0\\
+        1
+      \end{array}
+    \right] 
+  \]
+  である（$m=3, n=2$ の場合）．この係数行列は $\Syl(f,g)^{\top}$ であり，
+  その行列式は $\resul(f,g)\neq 0$ なのでこれは唯一つの解を持つ．クラー
+  メルの公式から，例えば $u_1$ は
+  \[
+    u_1 = \frac{1}{\resul(f,g)} \left|
+      \begin{array}{ccccc}
+        0 & 0 & b_2 & 0 & 0\\
+        0 & a_3 & b_a & b_2 & 0\\
+        0 & a_2 & b_0 & b_1 & b_2\\
+        0 & a_1 & 0 & b_0 & b_1\\
+        1 & a_0 & 0 & 0 & b_0
+      \end{array}
+    \right|
+  \]
+  であり，この行列式部分は $R$ の元である．他
+  の $u_i, v_j$
+  についても同様なので，共通の分母 $\resul(f,g)$ を払って $U = \resul(f,g) \tilde{U}, \; V=
+  \resul(f,g) \tilde{V}$ とすれば，$U f + V g = \resul(f,g)$ である．
+\end{proof}
+
+\begin{remark}
+  $\resul(f,g) \neq 0$ は $\gcd(f,g)=1$ と同値なので，$\tilde{U} f + \tilde{V} g =1$ と
+  なる多項式 $\tilde{U},\tilde{V}$ の存在はは拡張ユークリッドの互除法により保証される．
+  上の定理は，$\tilde{U},\tilde{V}$ の共通の分母が $\resul(f,g)$ であることを表してい
+  る．\cite{CLO}では，終結式を ``denominator-free'' version of the gcd とも呼んでいる．
+\end{remark}
 
 
-
-
-
-\newpage
 
 \section{2変数多項式の終結式}
 
@@ -410,7 +482,7 @@ $f$ と $g$ は共通根を持つ．$\Longleftrightarrow$ \;$\resul(f,g)=0$.
 
 \bibitem{yokoyama} 横山和弘，『多項式と計算機代数』，朝倉書店 (2022).
 
-\bibitem{CLO} D. U. Cox, J. Little and D. O'Shea, \textit{Ideals Varieties, and Ulgorithms 4th edition}, Springer (2015).
+\bibitem{CLO} D. A. Cox, J. Little and D. O'Shea, \textit{Ideals Varieties, and Ulgorithms 4th edition}, Springer (2015).
 
 \bibitem{Lang} S. Lang, \textit{Algebra Revised 3rd edition}, Springer (2004). 
 \end{thebibliography}
