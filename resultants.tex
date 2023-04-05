@@ -385,91 +385,14 @@ $f$ と $g$ は共通根を持つ．$\Longleftrightarrow$ \;$\resul(f,g)=0$.
       \Leftrightarrow \Syl(f,g)^{\top} ~\bm{w}= \bm{0}_5
     \end{aligned}
   \]
-  なので，$\resul(f,g) = \det\left(\Syl(f,g)^{\top}\right)$ と合わせて
+  なので，$\resul(f,g) = \det\left(\Syl(f,g)^{\top}\right)$ と合わせて以下を得る．
   \[
-    (2) \Leftrightarrow \text{同次形連立1次方程式 } \Syl(f,g)^{\top}~\bm{x}=\bm{0} \text{ が非自明解を持つ} \Leftrightarrow (3)
+    (2) \Leftrightarrow \text{同次形連立1次方程式 } \Syl(f,g)^{\top}~\bm{x}=\bm{0} \text{ が非自明解を持つ}
+    \Leftrightarrow (3)
   \]
-  を得る．
 \end{proof}
 
-定理\ref{thm:common-factor}から定理\ref{thm:common-solution}とその逆が証明できる．
 
-\begin{theorem}\label{thm:solution-resul}
-$f,g$ は共通根を持つ．$\Leftrightarrow$ \ $\resul(f,g) =0$. 
-\end{theorem}
-
-\begin{proof} $f,g$ の一方が零多項式なら他方の根は零多項式の根であ
-  り，$\resul(f,g)=0$ である．$f,g$ が共に零多項式ではなく一方が定数な
-  ら共通根は存在せず，$\resul(f,g) \neq 0$ である．そこで，$f,g$ は共に
-  定数でないとする．
-
-  $(\Rightarrow)$ $f(\gamma)=g(\gamma)=0$ とすると，因数定理から $f,g$
-  は共に $x-\gamma$ で割り切れる．つまり，$f,g$ の共通因子 $x-\gamma$
-  が存在するので，定理\ref{thm:common-factor}より $\resul(f,g)=0$ であ
-  る．
-  
-  $(\Leftarrow)$ 定理\ref{thm:common-factor}から $f,g$ は非定数の共通因子 $h$
-  を持ち，$h$ の根は $f,g$ の共通根である．
-\end{proof}
-
-次の定理\ref{thm:solutions}は，終結式 $\resul(f,g)$ の値と $f,g$ の根の間の明示的な関
-係式を与え，その系として定理\ref{thm:common-solution}の逆を導くこともできる．
-
-\newpage
-
-以下，$\ds f(x) = \prod_{i=1}^{m}(x-\alpha_i), \; g(x) = \prod_{j=1}^{n}(x-\beta_j)$ とおく．
-
-\begin{theorem}\label{thm:solutions}
-  $\ds \resul(f,g) =  a_m^n b_n^m \prod_{i=1}^{m} \prod_{j=1}^{n} (\alpha_i-\beta_j)$
-\end{theorem}
-
-\begin{proof}
-  $\ds T:=\prod_{i=1}^{m}\prod_{j=1}^{n}(\alpha_i-\beta_j)$ とおく． 定
-  理\ref{thm:common-solution}から $\alpha_i=\beta_j$ のと
-  き $\resul(f,g)=0$ なので，因数定理より $T$ は $\resul(f,g)$ を割り切
-  る．そこで，各 $\alpha_i, \beta_j$ の多項式とし
-  て $\resul(f,g)$ と $T$ の次数を評価し，係数を比較すればよい．
-  \[
-    \begin{aligned}
-      \frac{f(x)}{a_m} &= x^m + A_{1} x^{m-1} + \cdots + A_m = \prod_{i=1}^{m}(x-\alpha_i),\\
-      \frac{g(x)}{b_n} &= x^n + B_{1} x^{n-1} + \cdots + B_n = \prod_{j=1}^{n}(x-\beta_j)
-    \end{aligned}
-  \]
-  とすると，
-  \[
-    \resul(f,g) = a_m^n b_n^m \left|
-      \begin{array}{ccccccc}
-        1 & A_{1} & \cdots  & A_m& & & \\
-          & 1 & A_{1} & \cdots  & A_m& & \\
-          & & \ddots & \ddots & & \ddots &  \\
-          & & & 1 & A_{1} & \cdots &  A_m\\
-        1 & B_{1} & \cdots & B_n & & &\\
-          & 1 & B_{1} & \cdots & B_n & &\\
-          & & \ddots & \ddots & & \ddots &\\
-          & & & 1 & B_{1} & \cdots & B_n
-      \end{array}
-    \right|
-  \]
-  である．各 $A_k$ は $\alpha_1, \ldots, \alpha_m$ の，
-  各 $B_k$ は $\beta_1, \ldots, \beta_n$ の $k$ 次基本対称式の $\pm 1$
-  倍である．また，各 $A_i, B_j$ はそれぞれ $\alpha_i, \beta_j$ の1次式
-  なので，$\resul(f,g)$ は $\alpha_i$ に関して高々 $n$ 次で，$\beta_j$
-  に関して高々 $m$ 次である．従って，$\resul(f,g)$ は $T$ の定数倍であ
-  り，$\alpha_1^n$ の係数を比較して，$\resul(f,g) = a_m^n b_n^m T$ がわ
-  かる．
-\end{proof}
-
-次に，定理\ref{thm:solutions}を書き換えて，多項式の判別式と終結式の関係を導く．
-\[
-  a_m \prod_{i=1}^{m}(\alpha_i-\beta_j)= (-1)^m a_m \prod_{i=1}^{m}(\beta_j-\alpha_i)= (-1)^m f(\beta_j), \quad
-  b_n \prod_{j=1}^{n}(\alpha_i-\beta_j) = g(\alpha_i)
-\]
-より，次が成り立つ．
-
-
-\begin{lemma}\label{lem:resul-trans}
-  $\ds \resul(f,g) = (-1)^{mn}b_n^m \prod_{j=1}^{n}f(\beta_j) = a_m^n \prod_{i=1}^{m}g(\alpha_i)$
-\end{lemma}
 
 
 
