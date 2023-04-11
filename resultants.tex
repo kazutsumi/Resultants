@@ -1,6 +1,5 @@
 \documentclass[12pt, uplatex, dvipdfmx]{jsarticle} 
 \usepackage{amsmath,amsthm,amssymb,amsfonts,fancyhdr, enumerate, braket, setspace, graphicx, bm, multirow, bigdelim}
-\usepackage{emathEy}
 \newcommand{\ds}{\displaystyle}
 
 \theoremstyle{definition}
@@ -194,11 +193,11 @@ $f$ と $g$ は共通根を持つ．$\Longleftrightarrow$ \;$\resul(f,g)=0$.
 
 \begin{theorem}\label{thm:double-resul}
   非定数多項式 $f$ に対して，以下は同値．
-  \begin{edaenumerate}<retusuu=3>[(1)]
+  \begin{enumerate}[(1)]
   \item $f$ は重根を持つ．
   \item $f, f'$ は共通根を持つ．
   \item $\resul(f, f')=0$.
-  \end{edaenumerate}
+  \end{enumerate}
 \end{theorem}
 
 % \begin{proof}
@@ -464,10 +463,12 @@ $f$ と $g$ は共通根を持つ．$\Longleftrightarrow$ \;$\resul(f,g)=0$.
 \end{proof}
 
 \begin{remark}
-  $\resul(f,g) \neq 0$ は $\gcd(f,g)=1$ と同値なので，$\tilde{U} f + \tilde{V} g =1$ と
-  なる多項式 $\tilde{U},\tilde{V}$ の存在はは拡張ユークリッドの互除法により保証される．
-  上の定理は，$\tilde{U},\tilde{V}$ の共通の分母が $\resul(f,g)$ であることを表してい
-  る．\cite{CLO}では，終結式を ``denominator-free'' version of the gcd とも呼んでいる．
+  $\resul(f,g) \neq 0$ は $\gcd(f,g)=1$
+  と同値なので，$\tilde{U} f + \tilde{V} g =1$ となる多項
+  式 $\tilde{U},\tilde{V}$ の存在は拡張ユークリッドの互除法により保証さ
+  れる．上の定理は，$\tilde{U},\tilde{V}$ の共通の分母が $\resul(f,g)$
+  であることを表している．このことから，\cite{CLO}では終結式
+  を ``denominator-free'' version of the gcd とも呼んでいる．
 \end{remark}
 
 
