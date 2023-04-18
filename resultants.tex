@@ -18,12 +18,12 @@
 \DeclareMathOperator{\Rat}{Rat}
 \DeclareMathOperator{\disc}{disc}
 
-\pagestyle{plain}
-
+\pagestyle{fancy}
+\chead{終結式について}
 
 \begin{document}
 
-\section{1変数多項式の終結式}
+\section{終結式の定義}
 
 多項式の係数はいずれも整域 $R$ の元としておく．こうしておくと多項式の係
 数を商体 $\Rat(R)$ の元として分数に拡張できる．さらに方程式の解は代数閉
@@ -93,6 +93,8 @@
   \]
   次の定理\ref{thm:common-solution}から，$f,g$ は共通根を持ち，$f,h$ は共通根を持たないことがわかる．
 \end{example}
+
+\section{終結式と共通根}
 
 以下，$f,g$ は次のような多項式とする．ただし，$a_m, b_n \neq 0$ とする．
 \[
@@ -261,8 +263,6 @@ $f$ と $g$ は共通根を持つ．$\Longleftrightarrow$ \;$\resul(f,g)=0$.
   \]
 \end{example}
 
-\newpage
-
 \begin{theorem}
   $f$ を実係数 $3$ 次多項式とする．
   \[
@@ -315,7 +315,7 @@ $f$ と $g$ は共通根を持つ．$\Longleftrightarrow$ \;$\resul(f,g)=0$.
   より，$(a^3-3a-b)(3a+b)>0$ が求める条件である．
 \end{example}
 
-\newpage
+\section{終結式と共通因子}
 
 \begin{theorem}\label{thm:common-factor}
   定数でない多項式 $f,g$ に関して以下は同値である．
@@ -351,11 +351,11 @@ $f$ と $g$ は共通根を持つ．$\Longleftrightarrow$ \;$\resul(f,g)=0$.
   \[
     U= \sum_{i=0}^{n-1} u_i x^i=u_1 x + u_0, \quad V= \sum_{j=0}^{m-1} v_j x^j=v_2 x^2+v_1 x + v_0
   \]
-  とおき，$\bm{w} = \left[
+  とおき，$\bm{w}^{\top} = \left[
     \begin{array}{ccccc}
       u_1 & u_0 & v_2 & v_1 & v_0
     \end{array}
-    \right]^{\top}$ とすると
+    \right]$ とすると
   \[
     \begin{aligned}
       Uf+Vg=0 &\Leftrightarrow
@@ -462,19 +462,28 @@ $f$ と $g$ は共通根を持つ．$\Longleftrightarrow$ \;$\resul(f,g)=0$.
   \resul(f,g) \tilde{V}$ とすれば，$U f + V g = \resul(f,g)$ である．
 \end{proof}
 
-\begin{remark}
-  $\resul(f,g) \neq 0$ は $\gcd(f,g)=1$
-  と同値なので，$\tilde{U} f + \tilde{V} g =1$ となる多項
-  式 $\tilde{U},\tilde{V}$ の存在は拡張ユークリッドの互除法により保証さ
-  れる．上の定理は，$\tilde{U},\tilde{V}$ の共通の分母が $\resul(f,g)$
-  であることを表している．このことから，\cite{CLO}では終結式
-  を ``denominator-free'' version of the gcd とも呼んでいる．
-\end{remark}
+% \begin{remark}
+%   $\resul(f,g) \neq 0$ は $\gcd(f,g)=1$
+%   と同値なので，$\tilde{U} f + \tilde{V} g =1$ となる多項
+%   式 $\tilde{U},\tilde{V}$ の存在は拡張ユークリッドの互除法により保証さ
+%   れる．上の定理は，$\tilde{U},\tilde{V}$ の共通の分母が $\resul(f,g)$
+%   であることを表している．このことから，\cite{CLO}では終結式
+%   を ``denominator-free'' version of the gcd とも呼んでいる．
+% \end{remark}
 
 
 
 \section{2変数多項式の終結式}
 
+$k$ を体とする．以下 $f, g \in k[x,y] = \left( k\left[ y\right]\right)[x]$ は次のような多項式とする．
+\[
+  f(x,y) = \sum_{i=0}^{m} a_i(y) x^m, \quad  g(x,y) = \sum_{j=0}^{n} b_j(y) x^j, \quad a_m, b_n \neq 0, \; m \geq n
+\]
+前節で $R=k[y]$ として定まる終結式 $\resul(f,g) \in
+k[y]$ を $\resul_x(f,g)$ と書く．
+  
+
+\newpage
 
 \begin{thebibliography}{99}
 \bibitem{NI} 長坂工作・岩根秀直（編），『計算機代数の基礎理論』，共立出版 (2020).
