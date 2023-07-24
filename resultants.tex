@@ -667,7 +667,7 @@ $f(\alpha, \beta)=g(\alpha, \beta)=0$ となる $\alpha$ が存在するとは�
   実際には，$f(x,\beta), g(x,\beta)$ の最高次係数が共に $0$ でなけれ
   ば，2つの終結式は一致する．
   
-\begin{lemma}\label{lem:equal-resul1}
+\begin{lemma}\label{lem:equal-resul}
   $\beta \in \bar{k}$ に対して，$a_m(\beta) \neq 0$ \textbf{かつ} $b_n(\beta) \neq 0$ であれば以下が成り立つ．
   \[
     \resul_x(f,g)(\beta) = \resul(f(x,\beta), g(x,\beta))
@@ -699,7 +699,7 @@ $f(\alpha, \beta)=g(\alpha, \beta)=0$ となる $\alpha$ が存在するとは�
   式 $f(x,y)=g(x,y)=0$ の解の全てである．
 \end{example}
 
-補題\ref{lem:equal-resul1}と定理\ref{thm:2resul}から，$a_m(\beta)\neq
+補題\ref{lem:equal-resul}と定理\ref{thm:2resul}から，$a_m(\beta)\neq
 0$ \textbf{かつ} $b_n(\beta) \neq 0$ なら $\resul_x(f,g)(y)=0$ の解 $y=\beta$ を $f(x,y)=g(x,y)=0$ の解
 $(x,y)=(\alpha,\beta)$ に拡張できるが，この条件は弱められる．
 
@@ -712,17 +712,17 @@ $(x,y)=(\alpha,\beta)$ に拡張できるが，この条件は弱められる．
   $b_n(\beta)\neq 0$ のときも同様なので，$a_m(\beta) \neq 0$ と
   し，$k=\deg(g(x,\beta))$ とする．
 
-  $k=-\infty\; (\Leftrightarrow g(x,\beta)=0)$ のとき，終結式の定義か
-  ら $\resul(f(x,\beta), 0)=0$ なので，定理\ref{thm:2resul}から従う．
+  $k=-\infty\; (\Leftrightarrow g(x,\beta)=0)$ のと
+  き，$\resul(f(x,\beta), 0)=0$ なので，定理\ref{thm:2resul}から従う．
   
 
-  $k=0 \; (\Leftrightarrow g(x,\beta) = b_0(\beta) \neq 0)$ のと
-  き，終結式の定義から以下が成り立つ．
-  \[
-    \resul_x(f,g)(\beta)= \resul(f(x,\beta),g(x,\beta))= a_m(\beta)^n
-    b_0(\beta)^m \neq 0
-  \]
-
+  $k=0 \; (\Leftrightarrow g(x,\beta) = b_0(\beta) \neq 0)$ とはならな
+  い．実際，$a_m(\beta) \neq 0$ かつ $b_n(\beta)=b_0(\beta) \neq 0$ なので補
+  題\ref{lem:equal-resul}から
+  $\resul_x(f,g)(\beta)=\resul(f(x,\beta),g(x,\beta))$ だが，終結式の定
+  義から $\resul(f(x,\beta), g(x, \beta)) \resul(f(x,\beta), b_0(\beta))= a_m(\beta)^n \neq 0$ であ
+  る．
+  
   以下，$k\geq 1$
   とする．このとき，$\resul_x(f,g)(\beta) = a_m(\beta)^{n-k}
   \resul(f(x,\beta), g(x,\beta))$ が成り立つ．実際，例えば $m=4, n=3,
