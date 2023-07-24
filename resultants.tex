@@ -18,6 +18,8 @@
 \DeclareMathOperator{\Rat}{Rat}
 \DeclareMathOperator{\disc}{disc}
 
+\renewcommand{\arraystretch}{1.1}
+
 \pagestyle{fancy}
 \chead{終結式について}
 
@@ -531,11 +533,10 @@ k[y]$ を $\resul_x(f,g)(y)$ と書く．同様に，シルベスター行列
   \[
     U(x,y) f(x,y) + V(x,y) g(x,y) = \resul_x(f,g)(y)
   \]
-  を満たす $U(x,y), V(x,y) \in k[x,y]$ が存在するので，$\resul_x(f,g)(\beta)=0$ である．
+  を満たす $U(x,y), V(x,y) \in k[x,y]$ が存在するの
+  で，$f(\alpha,\beta)=g(\alpha,\beta)=0$ ならば
+  $\resul_x(f,g)(\beta)=0$ である．
 \end{proof}
-
-$y$ に関する方程式 $\resul_x(f,g)(y)=0$ は連立方程式 $f(x,y)=g(x,y)=0$
-から変数 $x$ を消去した方程式を与えてくれる．
 
 
 \newpage
@@ -547,11 +548,10 @@ $y$ に関する方程式 $\resul_x(f,g)(y)=0$ は連立方程式 $f(x,y)=g(x,y)
   \[
     f_x(x,y)= 3y x^2 + y(y^2-4), \quad f_y(x,y)=x^3+(3y^2-4)x
   \]
-  なので，終結式 $\resul_x(f_x, f_y)$ は第 $1$ 列に関する余因子展開を利用して
-  \renewcommand{\arraystretch}{1.2}
+  なので，終結式 $\resul_x(f_x, f_y)$ は第 $1$ 列に関する余因子展開を利用しつつ
   \[
     \begin{aligned}
-      &\resul_x(f_x, f_y)(y) = \left|
+     &\resul_x(f_x, f_y)(y) = \left|
         \begin{array}{ccccc}
           3y & 0 & y(y^2-4) & 0 & 0\\
           0 & 3y & 0 & y(y^2-4) & 0\\
@@ -559,53 +559,42 @@ $y$ に関する方程式 $\resul_x(f,g)(y)=0$ は連立方程式 $f(x,y)=g(x,y)
           1 & 0 & 3y^2-4 & 0 & 0\\
           0 & 1 & 0 & 3y^2-4 & 0
         \end{array}
-      \right|\\ \\
-      = & 3y \left|
+      \right|\\
+      & =  \left|
+        \begin{array}{ccccc}
+          0 & 0 & -8y(y^2-1) & 0 & 0 \\
+          0 & 3y & 0 & y(y^2-4) & 0\\
+          0 & 0 & 3y & 0 & y(y^2-4)\\
+          1 & 0 & 3y^2-4 & 0 & 0\\
+          0 & 1 & 0 & 3y^2-4 & 0
+        \end{array}
+      \right| \\ 
+      & =  - \left|
         \begin{array}{cccc}
+          0 & -8y(y^2-1) & 0 & 0\\
           3y & 0 & y(y^2-4) & 0\\
           0 & 3y & 0 & y(y^2-4)\\
-          0 & 3y^2-4 & 0 & 0\\
           1 & 0 & 3y^2-4 & 0
-        \end{array}
-      \right| - \left|
-        \begin{array}{cccc}
-          0 & y(y^2-4) & 0 & 0\\
-          3y & 0 & y(y^2-4) & 0\\
-          0 & 3y & 0 & y(y^2-4)\\
-          1 & 0 & 3y^2-4 & 0
-        \end{array}
-      \right| \\ \\
-      = & (3y)^2 \left|
-        \begin{array}{ccc}
-          3y & 0 & y(y^2-4)\\
-          3y^2-4 & 0 & 0\\
-          0 & 3y^2-4 & 0
-        \end{array}
-      \right| - 3y \left|
-        \begin{array}{ccc}
-          0 & y(y^2-4) & 0\\
-          3y & 0 & y(y^2-4)\\
-          3y^2-4 & 0 & 0
         \end{array}
       \right|\\
-      & + 3y \left|
-        \begin{array}{ccc}
-          y(y^2-4) & 0 & 0\\
-          3y & 0 & y(y^2-4)\\
-          0 & 3y^2-4 & 0
+      & = -\left|
+        \begin{array}{cccc}
+          0 & -8y(y^2-1) & 0 & 0\\
+          0 & 0 & -8y(y^2-1) & 0\\
+          0 & 3y & 0 & y(y^2-4)\\
+          1 & 0 & 3y^2-4 & 0
         \end{array}
-      \right| + \left|
+      \right|\\
+      & = \left|
         \begin{array}{ccc}
-          y(y^2-4) & 0 & 0\\
-          0  & y(y^2-4) & 0\\
+          -8y(y^2-1) & 0 & 0\\
+          0 & -8y(y^2-1) & 0\\
           3y & 0 & y(y^2-4)
         \end{array}
-      \right|\\ \\
-      = & 9y^3 ( 3y^2-4)^2 (y^2-4) - 3y^2(3y^2-4)(y^2-4)^2 -3y^3(3y^2-4)(y^2-4)^2 +y^3(y^2-4)^3\\
-      = & 64 y^3 (y-2)(y+2) (y-1)^2(y+1)^2
+      \right| 
+      =  64 y^3 (y-2)(y+2) (y-1)^2(y+1)^2
     \end{aligned}
   \]
-  \renewcommand{\arraystretch}{1}
   と計算できる．これより，$\resul_x(f_x,f_y)(y)=0$ の解 $y=0, \pm 1, \pm 2$ が得られるので，
   \begin{itemize}
   \item $f_x(x,0)=0$ かつ $f_y(x,0)=x(x^2-4)=0$ $\Leftrightarrow$ $x= 0, \pm 2$ 
@@ -622,11 +611,15 @@ $y$ に関する方程式 $\resul_x(f,g)(y)=0$ は連立方程式 $f(x,y)=g(x,y)
   $(0,0), \; (\pm 2,0), \; (1,\pm 1), \; \; (-1, \pm 1), \;  (0,\pm 2)$ の $9$ 点である．
 \end{example}
 
+$y$ に関する方程式 $\resul_x(f,g)(y)=0$ は連立方程
+式 $f(x,y)=g(x,y)=0$から変数 $x$ を消去した方程式である．こ
+の $\resul_x(f,g)(y)=0$ の解 $y=\beta$ を $f(x,y)=g(x,y)=0$ の解
+$(x,y)=(\alpha,\beta)$ へと拡張する，というのが2変数終結式の使い
+方である．
 
-定理\ref{thm:elimination}の逆は成り立たない．つま
-り，$\resul_x(f,g)(\beta)=0$ となる $\beta$ に対していつでも
+ところが，$\resul_x(f,g)(\beta)=0$ となる $\beta$ に対していつでも
 $f(\alpha, \beta)=g(\alpha, \beta)=0$ となる $\alpha$ が存在するとは限
-らない．
+らない．以下のような例がある．
 
 \begin{example}\label{exmp:degenerate}
   $f(x,y)=(y-1)x^2 + (y^2-2y)x + y-3, \; g(x,y) = (y-1)x-1$ に対して
@@ -644,37 +637,49 @@ $f(\alpha, \beta)=g(\alpha, \beta)=0$ となる $\alpha$ が存在するとは�
     f(x,1) = -x-2, \quad g(x,-1)=-1
   \]
   なので，$f(\alpha,1)=g(\alpha,1)=0$ を満たす $\alpha$ は存在しない．
-  これは，$f(x,1),g(x,1)$ の $x$ に関する最高次の係数が $0$ となるこ
-  とで，$\Syl(f(x,1), g(x,1))$ の次数が下がり，
+\end{example}
+
+例\ref{exmp:degenerate}のようなことが起こるの
+は，$f(x,1),g(x,1)$ の $x$ に関する最高次の係数が $0$ となること
+で，$\Syl(f(x,1), g(x,1))$ の次数が下がり，
   \[
     0=\resul_x(f,g)(1) \neq \resul(f(x,1), g(x,1))=-1
   \]
-  となっていることが原因である．
-\end{example}
+  となっていることが原因である．このような問題は，2変数多項式の終結
+  式 $\resul_x(f,g)(y)$ に $y=\beta$ を代入した $\resul_x(f,g)(\beta)$
+  と，$f(x,y), g(x,y)$ に $y=\beta$ を代入したものの終結
+  式 $\resul(f(x,\beta), g(x,\beta))$ が一致していれば発生しない．
 
-\begin{theorem}\label{thm:extention1}
-  $\beta \in \bar{k}$ に対して，$a_m(\beta) \neq 0$ かつ $b_n(\beta) \neq 0$ であれば以下が成り立つ．
+  \begin{theorem}\label{thm:2resul}
+    次を満たす $\beta \in \bar{k}$ に対し
+    て，$f(\alpha,\beta)=g(\alpha,\beta)=0$ を満たす $\alpha \in
+    \bar{k}$ が存在する．
+    \[
+      \resul_x(f,g)(\beta) = \resul(f(x,\beta), g(x,\beta)) =0
+    \]
+  \end{theorem}
+
+  \begin{proof}
+    定理\ref{thm:common-solution}から $f(x,\beta), g(x,\beta)$ に
+    共通根 $\alpha \in \bar{k}$ が存在し，$f(\alpha,\beta)=g(\alpha,\beta)=0$. 
+  \end{proof}
+
+  実際には，$f(x,\beta), g(x,\beta)$ の最高次係数が共に $0$ でなけれ
+  ば，2つの終結式は一致する．
+  
+\begin{lemma}\label{lem:equal-resul1}
+  $\beta \in \bar{k}$ に対して，$a_m(\beta) \neq 0$ \textbf{かつ} $b_n(\beta) \neq 0$ であれば以下が成り立つ．
   \[
     \resul_x(f,g)(\beta) = \resul(f(x,\beta), g(x,\beta))
   \]
-  さら
-  に，$\resul_x(f,g)(\beta)=0$ なら $f(\alpha,\beta)=g(\alpha,\beta)=0$
-  となる $\alpha \in \bar{k}$ が存在する．
-\end{theorem}
+\end{lemma}
 
 \begin{proof}
-  $a_m(\beta) \neq 0$ かつ $b_n(\beta)\neq 0$ のと
-  き，$\Syl_x(f,g)(y)$ と $\Syl(f(x,\beta), g(x,\beta))$ は共
-  に $(m+n)$ 次正方行列で，
-  \[
-    \Syl_x(f,g)(\beta) = \Syl(f(x,\beta), g(x, \beta))
-  \]
-  なので，両者の行列式は等しく，$\resul_x(f,g)(\beta) =
-  \resul(f(x,\beta), g(x,\beta))$ である．これよ
-  り，$\resul_x(f,g)(\beta)=0$ なら $\resul(f(x,\beta), g(x,\beta))=0$
-  なので，定理\ref{thm:common-solution}から $f(x,\beta)$ と $g(x,
-  \beta)$ の共通根，すなわち，$f(\alpha,\beta)=g(\alpha,\beta)=0$ とな
-  る $\alpha \in \bar{k}$ が存在する．
+  $a_m(\beta) \neq 0$ かつ $b_n(\beta)\neq 0$ のとき，2つのシルベスター
+  行列 $\Syl_x(f,g)(\beta)$ と $\Syl(f(x,\beta), g(x,\beta))$ は共
+  に $(m+n)$
+  次正方行列で各成分が等しい．つまり，$\Syl_x(f,g)(\beta) =
+  \Syl(f(x,\beta), g(x,\beta))$ でなので，両者の行列式も当然等しい．
 \end{proof}
 
 \begin{example}
@@ -694,41 +699,34 @@ $f(\alpha, \beta)=g(\alpha, \beta)=0$ となる $\alpha$ が存在するとは�
   式 $f(x,y)=g(x,y)=0$ の解の全てである．
 \end{example}
 
-定理\ref{thm:extention1}の仮定は少し弱められる．
+補題\ref{lem:equal-resul1}と定理\ref{thm:2resul}から，$a_m(\beta)\neq
+0$ \textbf{かつ} $b_n(\beta) \neq 0$ なら $\resul_x(f,g)(y)=0$ の解 $y=\beta$ を $f(x,y)=g(x,y)=0$ の解
+$(x,y)=(\alpha,\beta)$ に拡張できるが，この条件は弱められる．
 
-\begin{theorem}\label{thm:extention2}
-  $\beta \in \bar{k}$ に対して，$a_m(\beta) \neq 0$ または $b_n(\beta) \neq 0$ であれば，以下を満たす $C$ が存在する．
-  \[
-    \resul_x(f,g)(\beta) = C \resul(f(x,\beta), g(x,\beta)), \quad C \in \bar{k}\setminus \{0\}
-  \]
-  さらに，$\resul_x(f,g)(\beta)=0$ なら $f(\alpha,
+\begin{theorem}[\textbf{解の拡張定理}]\label{thm:extention}
+  $\resul_x(f,g)(\beta)=0$ のとき，$a_m(\beta) \neq 0$ \textbf{または} $b_n(\beta) \neq 0$ なら $f(\alpha,
   \beta)=g(\alpha,\beta)=0$ となる $\alpha \in \bar{k}$ が存在する．
 \end{theorem}
 
 \begin{proof}
-  $a_m(\beta) \neq 0$ とし，$k=\deg(g(x,\beta))$ とする．
+  $b_n(\beta)\neq 0$ のときも同様なので，$a_m(\beta) \neq 0$ と
+  し，$k=\deg(g(x,\beta))$ とする．
 
-  $g(x,\beta)=0 \; (\Leftrightarrow k=-\infty)$ のとき，シルベスター行列 $\Syl_x(f,g)(\beta)$
-  の下 $m$ 行分の成分が全て $0$ なので $\resul_x(f,g)(\beta)=0$ である．
-  また，このとき終結式の定義から
-  $\resul(f(x,\beta), g(x,\beta)) = \resul(f(x,\beta), 0) = 0$ なので，
-  任意の $C \in \bar{k}\setminus \{0\}$ に対して
-  $\resul_x(f,g)(\beta) = C \resul(f(x,\beta), g(x,\beta))$ が成り立つ．
-  さらに，$f(x,\beta)$ の根 $\alpha$ に対して
-  $f(\alpha, \beta) = g(\alpha,\beta)$ が成り立つ．
+  $k=-\infty\; (\Leftrightarrow g(x,\beta)=0)$ のとき，終結式の定義か
+  ら $\resul(f(x,\beta), 0)=0$ なので，定理\ref{thm:2resul}から従う．
+  
 
-  $g(x,\beta) = b_0(\beta) \neq 0 \; (\Leftrightarrow k=0)$ のと
+  $k=0 \; (\Leftrightarrow g(x,\beta) = b_0(\beta) \neq 0)$ のと
   き，終結式の定義から以下が成り立つ．
   \[
     \resul_x(f,g)(\beta)= \resul(f(x,\beta),g(x,\beta))= a_m(\beta)^n
     b_0(\beta)^m \neq 0
   \]
 
-  以下，$k\geq 1$ とする．このとき $b_k(\beta) \neq 0$ である．また，$a_m(\beta) \neq 0$ なので
-  \[
-    \resul_x(f,g)(\beta) = a_m(\beta)^{n-k} \resul(f(x,\beta), g(x,\beta)), \quad a_m(\beta)^{n-k} \neq 0
-  \]
-  が成り立つ．実際，$m=4, n=3, k=1$ の場合では
+  以下，$k\geq 1$
+  とする．このとき，$\resul_x(f,g)(\beta) = a_m(\beta)^{n-k}
+  \resul(f(x,\beta), g(x,\beta))$ が成り立つ．実際，例えば $m=4, n=3,
+  k=1$ の場合では
   \[
     \begin{aligned}
       \resul_x(f,g)(\beta) &= \left|
@@ -750,24 +748,23 @@ $f(\alpha, \beta)=g(\alpha, \beta)=0$ となる $\alpha$ が存在するとは�
           0 & 0 & b_1 & b_0 & 0\\
           0 & 0 & 0 & b_1 & b_0
         \end{array}
-      \right| = a_4^2 ~\resul(f(x,\beta),g(x,\beta))
+      \right| = a_4^2 ~\resul(f(x,\beta),g(x,\beta)) 
     \end{aligned}
   \]
-  となる．これより，$\resul_x(f,g)(\beta)=0$ なら
-  $\resul(f(x,\beta), g(x,\beta))=0$ なので，定
-  理\ref{thm:common-solution}から $f(\alpha,\beta)=g(\alpha,\beta)=0$
-  となる $\alpha \in \bar{k}$ が存在する．
+  となる．$a_m(\beta) \neq 0$ なので，これより
+  $\resul_x(f,g)(\beta)= \resul(f(x,\beta), g(x,\beta))=0$ だから，定
+  理\ref{thm:2resul}より従う．
 \end{proof}
 
 \begin{example}
   $f(x,y) = (y-1)x^2 - x +y, \; g(x,y)=yx-1$ とする．
   \[
-    \resul_x(f,g)(y) = y^3-1
+    \resul_x(f,g)(y) = y^3-1 = (y-1)(y-\omega)(y-\omega^2) \quad \left( \omega = \exp\left(2\pi i/3\right) \right)
   \]
   である．これの根 $y=1$ を $f(x,y)$ の $x$ に関する最高次係
   数 $a_2(y)=y-1$ に代入すると $a_2(1)=0$ となるが，$g(x,y)$ の最高次係
   数 $b_1(y)=y$ に代入しても $b_1(1)=1\neq 0$ なので定
-  理\ref{thm:extention2}からこ
+  理\ref{thm:extention}からこ
   の $y=1$ を連立方程式 $f(x,y)=g(x,y)=0$ の解に拡張できる．実際，
   \[
     f(x,1) = -x+1, \quad g(x,1)=x-1
